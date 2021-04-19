@@ -1,10 +1,9 @@
-package com.f2prateek.rx.preferences2;
+package com.f2prateek.rx.preferences3;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 import androidx.test.core.app.ApplicationProvider;
-import io.reactivex.functions.Consumer;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -16,9 +15,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
+import io.reactivex.rxjava3.functions.Consumer;
+
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
-import static com.f2prateek.rx.preferences2.Roshambo.PAPER;
-import static com.f2prateek.rx.preferences2.Roshambo.ROCK;
+import static com.f2prateek.rx.preferences3.Roshambo.PAPER;
+import static com.f2prateek.rx.preferences3.Roshambo.ROCK;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singleton;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -282,7 +283,7 @@ public class PreferenceTest {
     observer.assertValue("bar");
   }
 
-  @Test public void asConsumer() throws Exception {
+  @Test public void asConsumer() throws Throwable {
     Preference<String> preference = rxPreferences.getString("foo");
     Consumer<? super String> consumer = preference.asConsumer();
 

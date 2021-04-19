@@ -1,4 +1,4 @@
-package com.f2prateek.rx.preferences2;
+package com.f2prateek.rx.preferences3;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -10,15 +10,15 @@ import androidx.annotation.RequiresApi;
 import java.util.Collections;
 import java.util.Set;
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Cancellable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
+import io.reactivex.rxjava3.functions.Cancellable;
 
 import static android.os.Build.VERSION_CODES.HONEYCOMB;
-import static com.f2prateek.rx.preferences2.Preconditions.checkNotNull;
+import static com.f2prateek.rx.preferences3.Preconditions.checkNotNull;
 
-/** A factory for reactive {@link Preference} objects. */
+/** A factory for reactive {@link com.f2prateek.rx.preferences3.Preference} objects. */
 public final class RxSharedPreferences {
   private static final Float DEFAULT_FLOAT = 0f;
   private static final Integer DEFAULT_INTEGER = 0;
@@ -81,7 +81,7 @@ public final class RxSharedPreferences {
   /** Create an enum preference for {@code key} with a default of {@code defaultValue}. */
   @CheckResult @NonNull
   public <T extends Enum<T>> Preference<T> getEnum(@NonNull String key, @NonNull T defaultValue,
-      @NonNull Class<T> enumClass) {
+                                                                                 @NonNull Class<T> enumClass) {
     checkNotNull(key, "key == null");
     checkNotNull(defaultValue, "defaultValue == null");
     checkNotNull(enumClass, "enumClass == null");
@@ -134,7 +134,7 @@ public final class RxSharedPreferences {
    * Create a preference for type {@code T} for {@code key} with a default of {@code defaultValue}.
    */
   @CheckResult @NonNull public <T> Preference<T> getObject(@NonNull String key,
-      @NonNull T defaultValue, @NonNull Preference.Converter<T> converter) {
+                                                                                         @NonNull T defaultValue, @NonNull Preference.Converter<T> converter) {
     checkNotNull(key, "key == null");
     checkNotNull(defaultValue, "defaultValue == null");
     checkNotNull(converter, "converter == null");
@@ -170,7 +170,7 @@ public final class RxSharedPreferences {
   @RequiresApi(HONEYCOMB)
   @CheckResult @NonNull
   public Preference<Set<String>> getStringSet(@NonNull String key,
-      @NonNull Set<String> defaultValue) {
+                                              @NonNull Set<String> defaultValue) {
     checkNotNull(key, "key == null");
     checkNotNull(defaultValue, "defaultValue == null");
     return new RealPreference<>(preferences, key, defaultValue, StringSetAdapter.INSTANCE, keyChanges);

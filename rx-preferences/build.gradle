@@ -3,10 +3,11 @@ apply plugin: 'com.android.library'
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion
   buildToolsVersion rootProject.ext.buildToolsVersion
+  testOptions.unitTests.includeAndroidResources = true
 
   compileOptions {
-    sourceCompatibility rootProject.ext.javaVersion
-    targetCompatibility rootProject.ext.javaVersion
+    sourceCompatibility rootProject.ext.java8Version
+    targetCompatibility rootProject.ext.java8Version
   }
 
   defaultConfig {
@@ -21,7 +22,7 @@ android {
 
 dependencies {
   implementation deps.annotations
-  api deps.rxjava2
+  api deps.rxjava3
 
   testImplementation deps.junit
   testImplementation deps.assertj
